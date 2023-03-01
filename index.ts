@@ -38,13 +38,13 @@ const posts = [
   }
 ]
 
-type Post = {
+interface Post {
   id: string;
   title: string;
   body: string;
 };
 
-type NormalizedData = {
+interface NormalizedData {
   byId: {
     [id: string]: Post;
   };
@@ -55,7 +55,7 @@ const normalizeData = (unnormalizedData: Post[]): NormalizedData => {
   const byId: NormalizedData['byId'] = {};
   const allIds: string[] = [];
 
-  unnormalizedData.forEach((post) => {
+  unnormalizedData.map((post) => {
     byId[post.id] = post;
     allIds.push(post.id);
   });
